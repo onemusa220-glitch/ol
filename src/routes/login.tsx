@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import heroImg from "@/assets/brand-hero.jpg";
 import { login } from "@/demo/engine";
+import { DEMO_PASSWORD } from "@/demo/seed";
 import { useDemo } from "@/demo/hooks";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -35,13 +36,14 @@ function Login() {
   function signIn(e?: React.FormEvent, asEmail?: string) {
     e?.preventDefault();
     const useEmail = asEmail ?? email;
-    if (!useEmail || !password) {
+    const usePassword = asEmail ? DEMO_PASSWORD : password;
+    if (!useEmail || !usePassword) {
       toast.error("Enter your email and password");
       return;
     }
     setBusy(true);
     try {
-      const user = login(useEmail, password);
+      const user = login(useEmail, usePassword);
       toast.success(`Karibu, ${user.name}`);
       navigate({ to: user.role === "cashier" || user.role === "stock_take_agent" ? "/pos" : "/dashboard", replace: true });
     } catch (err) {
