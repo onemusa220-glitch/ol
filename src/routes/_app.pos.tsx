@@ -233,7 +233,6 @@ function Checkout({ sale, onClose, onDone }: { sale: Sale; onClose: () => void; 
   const [stkPayment, setStkPayment] = useState<Payment | null>(null);
   const [stkPolling, setStkPolling] = useState(false);
   const [paybillPayment, setPaybillPayment] = useState<Payment | null>(null);
-  const [paybillSim, setPaybillSim] = useState(false);
   const [done, setDone] = useState(false);
   const [receipt, setReceipt] = useState<Sale | null>(null);
 
@@ -321,7 +320,7 @@ function Checkout({ sale, onClose, onDone }: { sale: Sale; onClose: () => void; 
     }
   }
 
-  function handlePaybillCreate() {
+  function handlePaybillAuto() {
     try {
       const pay = createPaybillExpectation(sale.id, total);
       setPaybillPayment(pay);
@@ -331,7 +330,7 @@ function Checkout({ sale, onClose, onDone }: { sale: Sale; onClose: () => void; 
     }
   }
 
-  function handlePaybillSimulate() {
+  function handlePaybillConfirm() {
     if (!paybillPayment?.paybillAccount) return;
     const res = receivePaybill(paybillPayment.paybillAccount, total);
     if (res.matched) {
@@ -341,7 +340,6 @@ function Checkout({ sale, onClose, onDone }: { sale: Sale; onClose: () => void; 
       toast.success("PayBill payment received — sale complete");
     } else {
       toast.error(res.message);
-      setPaybillSim(true);
     }
   }
 
@@ -473,8 +471,8 @@ function Checkout({ sale, onClose, onDone }: { sale: Sale; onClose: () => void; 
                   <div className="rounded-lg border border-brand/40 bg-brand-soft px-3 py-2 text-xs font-medium">
                     🟡 DEMO — PayBill payment will be simulated
                   </div>
-                  <Button className="h-14 w-full text-base font-bold" onClick={handlePaybillCreate}>
-                    GENERATE PAYBILL REQUEST
+                  <Button className="h-14 w-full text-base font-bold" onClick={handlePaybillAuto}>
+                    CONFIRM PAYBILL — {money(total)}
                   </Button>
                 </>
               )}
@@ -487,14 +485,15 @@ function Checkout({ sale, onClose, onDone }: { sale: Sale; onClose: () => void; 
                     <p className="mt-1 text-xs text-muted-foreground">Amount: <span className="font-bold text-foreground">{money(total)}</span></p>
                   </div>
                   <div className="rounded-xl border bg-brand-soft p-4 text-center">
-                    <p className="text-2xl">⏳</p>
-                    <p className="mt-1 font-display text-sm font-bold">Waiting for payment</p>
+                    <p className="text-2xl">📲</p>
+                    <p className="mt-1 font-display text-sm font-bold">Customer received M-Pesa confirmation</p>
+                    <p className="mt-1 text-xs text-muted-foreground">Confirm once the customer shows their payment message</p>
                   </div>
                   <div className="rounded-lg border border-brand/40 bg-brand-soft px-3 py-2 text-xs font-medium">
-                    🟡 DEMO — simulate the customer sending payment:
+                    🟡 DEMO — simulate the customer's M-Pesa confirmation:
                   </div>
-                  <Button className="h-12 w-full font-bold" onClick={handlePaybillSimulate}>
-                    SIMULATE PAYMENT RECEIVED
+                  <Button className="h-12 w-full font-bold" onClick={handlePaybillConfirm}>
+                    CONFIRM PAYMENT RECEIVED
                   </Button>
                 </div>
               )}
