@@ -1,0 +1,160 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * BrathaMatu design system.
+ * Warm, premium retail identity: deep espresso surfaces, golden chicken-brand
+ * accents, Space Grotesk display + DM Sans body. Dark POS terminal tokens
+ * (pos-*) are used by the POS screen; admin pages use the light warm theme.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", "DM Sans", ui-sans-serif, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-brand: var(--brand);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-soft: var(--brand-soft);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-pos-bg: var(--pos-bg);
+  --color-pos-surface: var(--pos-surface);
+  --color-pos-surface-2: var(--pos-surface-2);
+  --color-pos-foreground: var(--pos-foreground);
+  --color-pos-muted: var(--pos-muted);
+  --color-pos-muted-foreground: var(--pos-muted-foreground);
+  --color-pos-border: var(--pos-border);
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: oklch(0.985 0.004 85);
+  --foreground: oklch(0.25 0.02 70);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.25 0.02 70);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.25 0.02 70);
+  --primary: oklch(0.32 0.045 60);
+  --primary-foreground: oklch(0.97 0.012 85);
+  --secondary: oklch(0.955 0.008 80);
+  --secondary-foreground: oklch(0.3 0.03 65);
+  --muted: oklch(0.955 0.008 80);
+  --muted-foreground: oklch(0.5 0.02 70);
+  --accent: oklch(0.94 0.045 88);
+  --accent-foreground: oklch(0.3 0.04 70);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 85);
+  --border: oklch(0.9 0.012 80);
+  --input: oklch(0.9 0.012 80);
+  --ring: oklch(0.68 0.16 55);
+  --brand: oklch(0.8 0.155 82);
+  --brand-deep: oklch(0.66 0.165 52);
+  --brand-soft: oklch(0.95 0.05 90);
+  --success: oklch(0.6 0.15 155);
+  --success-soft: oklch(0.93 0.06 155);
+  --pos-bg: oklch(0.215 0.015 65);
+  --pos-surface: oklch(0.265 0.018 62);
+  --pos-surface-2: oklch(0.33 0.02 60);
+  --pos-foreground: oklch(0.965 0.012 85);
+  --pos-muted: oklch(0.3 0.018 62);
+  --pos-muted-foreground: oklch(0.72 0.02 78);
+  --pos-border: oklch(0.42 0.02 65);
+  --chart-1: oklch(0.8 0.155 82);
+  --chart-2: oklch(0.66 0.165 52);
+  --chart-3: oklch(0.6 0.15 155);
+  --chart-4: oklch(0.55 0.12 260);
+  --chart-5: oklch(0.7 0.12 30);
+  --sidebar: oklch(0.985 0.004 85);
+  --sidebar-foreground: oklch(0.25 0.02 70);
+  --sidebar-primary: oklch(0.32 0.045 60);
+  --sidebar-primary-foreground: oklch(0.97 0.012 85);
+  --sidebar-accent: oklch(0.94 0.045 88);
+  --sidebar-accent-foreground: oklch(0.3 0.04 70);
+  --sidebar-border: oklch(0.9 0.012 80);
+  --sidebar-ring: oklch(0.68 0.16 55);
+}
+
+.dark {
+  --background: oklch(0.2 0.015 65);
+  --foreground: oklch(0.96 0.012 85);
+  --card: oklch(0.26 0.018 62);
+  --card-foreground: oklch(0.96 0.012 85);
+  --popover: oklch(0.26 0.018 62);
+  --popover-foreground: oklch(0.96 0.012 85);
+  --primary: oklch(0.8 0.155 82);
+  --primary-foreground: oklch(0.22 0.02 65);
+  --secondary: oklch(0.33 0.02 60);
+  --secondary-foreground: oklch(0.96 0.012 85);
+  --muted: oklch(0.33 0.02 60);
+  --muted-foreground: oklch(0.72 0.02 78);
+  --accent: oklch(0.33 0.02 60);
+  --accent-foreground: oklch(0.96 0.012 85);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.984 0.003 85);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: oklch(0.8 0.155 82);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+  }
+}
+
+@layer utilities {
+  .pos-theme {
+    background-color: var(--color-pos-bg);
+    color: var(--color-pos-foreground);
+  }
+  .gradient-brand {
+    background-image: linear-gradient(135deg, var(--color-brand), var(--color-brand-deep));
+  }
+  .shadow-elegant {
+    box-shadow: 0 10px 30px -12px oklch(0.32 0.05 60 / 25%);
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+}
