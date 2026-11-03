@@ -1,0 +1,6 @@
+{
+    "/vendor": true,
+    "/node_modules": true,
+    "/storage": true,
+    "*.log": true
+}
